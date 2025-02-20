@@ -1,6 +1,6 @@
 'use client'
 
-import { HomeIcon, LogInIcon, Menu, PhoneIcon, ShoppingCart, StoreIcon, X } from "lucide-react"
+import { HomeIcon, LogInIcon, Menu, PhoneIcon, ShoppingBag, ShoppingCart, StoreIcon, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
@@ -8,9 +8,11 @@ import { useState } from "react"
 const links = [
     {href: '/', label: <HomeIcon />},
     {href: '/contato', label: <PhoneIcon />},
-    {href: '/loja', label: <ShoppingCart />},
+    {href: '/loja', label: <ShoppingBag />},
+    {href: '/cart', label: <ShoppingCart />},
     {href: '/admin', label: <StoreIcon />},
-    {href: '/login', label: <LogInIcon />}
+    {href: '/login', label: <LogInIcon />},
+    
 ]
 
 export default function Header()
