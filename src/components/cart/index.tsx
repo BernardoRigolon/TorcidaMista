@@ -2,10 +2,15 @@ import { ShoppingCart, XIcon } from "lucide-react"
 import { Card } from "../../../types/home/home"
 import LojaCard from "../lojapage/card"
 import Link from "next/link"
+import { getServerSession } from "next-auth"
 
-export default function Cart({posetaxs, count, totalPages}: {posetaxs: Card[], count: number, totalPages: number}){
+export default async function Cart({posetaxs, count, totalPages}: {posetaxs: Card[], count: number, totalPages: number}){
+
+    const session = await getServerSession()
+
     return(
         <div className="flex flex-col items-center justify-center py-6 gap-5 lg:gap-10 pb-10">
+            <h1 className="text-center text-white text-xl">Olá {session?.user?.name}</h1>
             <h1 className="text-white text-2xl flex items-center justify-center gap-4 lg:text-[50px]">Carrinho <span className="lg:text-[50px]"><ShoppingCart/></span></h1>
             <div className="flex flex-wrap gap-5 lg:gap-20 justify-center items-center">
                 {posetaxs.map((posetax,index)=>(
