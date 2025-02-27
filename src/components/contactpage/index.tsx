@@ -11,7 +11,7 @@ export default function ContactPage() {
             <div className="text-center text-white pt-10 w-5/6">
                 <h1 className="text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl">Algumas Formas de Nos Encontrar</h1>
                 <div className="flex flex-col text-xl md: text-2xl gap-5 py-5 xl:text-4xl 2xl:text-5xl">
-                    <span>Telefone: (32)987654321</span>
+                    <span>Telefone: (24)988490799</span>
                     <span>Email: TorcidaMista@gmail.com</span>
                     <span>Instagram: @TorcidaMista</span>
                 </div>

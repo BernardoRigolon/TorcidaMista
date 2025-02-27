@@ -5,6 +5,7 @@ import { fetchFilteredPosts } from "@/actions/search/actions";
 import CartCard from "@/components/cart/card";
 import Payment from "@/components/payment";
 import { CartContext, CartItem } from "@/context/cart";
+import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
 
@@ -37,7 +38,16 @@ export default function Pagamento() {
                                 ))}
             </div>
             <h2 className="text-white text-2xl lg:text-5xl">Valor Total: R${totalValue.toFixed(2)}</h2>
-            <h3 className="text-white text-xl lg:text-4xl">(24)987654321</h3>
+            <h3 className="text-white text-xl lg:text-4xl">(24)988490799</h3>
+            <Link href={'https://w.app/wsl7ot'}>
+            <Image
+            src={'/zap.png'}
+            alt={'zap'}
+            width={360}
+            height={360}
+            className="w-[180px] h-[180px]"
+            />
+            </Link>
             <Link href={'/'}>
             <button onClick={handleClick} className="bg-[#D5D918] p-1 text-xl lg:text-4xl lg:p-2 rounded-sm">Confirmar Compra</button>
             </Link>
