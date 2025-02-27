@@ -1,24 +1,46 @@
-import getCard from "@/actions/home/actions";
-import { fetchFilteredPosts } from "@/actions/search/actions";
-import Cart from "@/components/cart";
+"use client"
 
-export default async function Page({searchParams,
-}: {
-    searchParams: {
-        query?: string;
-        page?: string;
+import CartCard from "@/components/cart/card";
+import LojaCard from "@/components/lojapage/card";
+import { CartContext, CartItem } from "@/context/cart";
+import { ShoppingCart } from "lucide-react";
+import { getServerSession } from "next-auth";
+import Link from "next/link";
+import { useContext, useEffect } from "react";
+
+export default function Page() {
+
+    console.log(CartContext);
+    const cartContext = useContext(CartContext);
+
+    if (!cartContext) {
+        throw new Error("CartContext is not provided!");
     }
-}) {
 
-    const query = searchParams?.query || ''
-    const currentPage = Number(searchParams?.page) || 1
+    const { count, cartItems } = cartContext;
 
-    const {posetaxs, count, totalPages} = await fetchFilteredPosts(query, currentPage || 6)
+    const cardItemCount = count();
 
-    const posts = await getCard()
+    const totalValue = cartItems.reduce((acc, item) => acc + item.product?.price, 0);
+
     return(
         <div className="bg-gradient-to-b from-black to-[#038C00] w-full min-h-screen">
-            <Cart posetaxs={posetaxs} count={count} totalPages={totalPages} />
+            <div className="flex flex-col items-center justify-center py-16 gap-5 lg:gap-10 pb-10">
+            <h1 className="text-white text-2xl flex items-center justify-center gap-4 lg:text-[50px]">Carrinho <span className="lg:text-[50px]"><ShoppingCart/></span></h1>
+            <div className="flex flex-wrap gap-5 lg:gap-20 justify-center items-center">
+                {cartItems.map((item: CartItem, index: number)=>(
+                    <div key={index}>
+                        <CartCard post={item.product} />
+                    </div>
+                ))}
+            </div>
+            <h2 className="text-white text-2xl lg:text-5xl">Valor Total: R${totalValue.toFixed(2)}</h2>
+            <button className="bg-[#D5D918] p-1 text-xl lg:text-4xl lg:p-2 rounded-sm">
+                <Link href="/pagamento">
+                    Finalizar Compra
+                </Link>
+            </button>
+        </div>
         </div>
     )
 }

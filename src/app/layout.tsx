@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Akaya_Telivigala} from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/context/cart";
 
 const akaya = Akaya_Telivigala({
   weight: "400",
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={akaya.className}>
+        <CartProvider>
         {children}
+        </CartProvider>
         </body>
     </html>
   );

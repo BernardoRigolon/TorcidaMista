@@ -1,7 +1,6 @@
 'use client'
 
 import Image from "next/image";
-import { signIn } from "next-auth/react"
 import ButtonLogin from "../buttonLogin";
 
 export default function LoginPage() {
