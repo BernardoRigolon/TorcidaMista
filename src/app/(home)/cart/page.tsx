@@ -5,10 +5,23 @@ import LojaCard from "@/components/lojapage/card";
 import { CartContext, CartItem } from "@/context/cart";
 import { ShoppingCart } from "lucide-react";
 import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { redirect, useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 
 export default function Page() {
+
+    const { data: session, status } = useSession();
+  const router = useRouter();
+
+    useEffect(() => {
+        if (status === "loading") return;
+    
+        if (!session) {
+          router.push("/login");
+        }
+      }, [session, status, router]);
 
     console.log(CartContext);
     const cartContext = useContext(CartContext);
